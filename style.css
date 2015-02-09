@@ -1,0 +1,150 @@
+body {
+  padding: 0;
+  margin: 0;
+  font-family: Palatino Linotype, Bookman Antiqua, Palatino, serif;
+  font-size: 16px;
+  line-height: 20px;
+}
+.slide {
+  width: 95%;
+  height: 95%;
+  display: none;
+  position: absolute;
+  margin: 0;
+  margin-left: 0.5%;
+  padding: 1% 2% 1% 2%;
+}
+input, select, button {font-family: Georgia, serif; font-size: 14px;}
+button {
+  background: url(images/button-gradient.png);
+  border: 1px solid #999;
+  border-top: 1px solid #e0e0e0;
+  border-left: 1px solid #e0e0e0;
+  margin: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
+  height: 29px;
+  min-width: 70px;
+  text-align: center;
+
+}
+button:active {
+  border-left: 1px solid #c9c9c9;
+  border-top: 1px solid #c9c9c9;
+  background: none;
+  background-color: #c9c9c9;
+  text-align: center;
+
+}
+
+button[disabled] {
+  background: url(zen-button.png);
+  border: 1px solid #999;
+  border-top: 1px solid #e0e0e0;
+  border-left: 1px solid #e0e0e0;
+  cursor: not-allowed;
+  text-align: center;
+}
+#logo-text {
+  font-weight: bold;
+}
+
+#instructions {
+  text-align: center;
+}
+
+#practiceInstructions {
+  text-align: center;
+}
+
+#realTrialsInstructions {
+  text-align: center;
+}
+
+.block-text {
+  width: 500px;
+  text-align: justify;
+  margin: 0 auto;
+  margin-bottom: 1em;
+}
+
+.block-text2 {
+    width: 500px;
+    text-align: justify;
+    margin: 0 auto;
+    margin-top: 5em;
+    font-size: 1.25em;
+}
+
+.block-text3 {
+    width: 500px;
+    text-align: justify;
+    margin: 0 auto;
+    font-size: 1.25em;
+}
+
+#legal {
+  margin: 0 auto;
+  margin-top: 1.5em;
+  font-size: 0.8em;
+}
+
+#instructionsBlock {
+    width: 500px;
+    margin: 0 auto;
+    font-size: 1em;
+}
+
+#instructionsBlock2 {
+    width: 500px;
+    margin: 0 auto;
+    font-size: 1.25em;
+}
+
+#questionText {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+#questionL {
+  text-align: center;
+  font-size: 1.5em;
+}
+#questionR {
+  text-align: center;
+  font-size: 1.5em;
+}
+
+#context1 {
+  text-align: center;
+  font-size: 1.5em;
+}
+
+#context2 {
+  text-align: center;
+  font-size: 1.5em;
+}
+
+#context3 {
+  text-align: center;
+  font-size: 1.5em;
+}
+
+#context4 {
+  text-align: center;
+  font-size: 1.5em;
+}
+
+#instructionsText {
+    text-align: center;
+    font-size: 1.25em;
+   font-style: italic;
+}
+
+#instructionsText2 {
+    text-align: center;
+    font-size: 1.25em;
+   font-style: italic;
+}
+
+

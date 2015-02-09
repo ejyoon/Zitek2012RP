@@ -1,0 +1,121 @@
+
+<html>
+<head>
+  <title>Perception Study</title>
+  <script src="js/jquery.min.js"></script>
+  <script src="js/mmturkey.js"></script>
+  <script src="js/jquery.preload.js"></script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div class="slide" id="instructions">
+  <img src="images/stanford.png" alt="Stanford University">
+    <p id='logo-text'>Stanford Department of Psychology</p>
+  <p class="block-text">This experiment will take approximately 5 minutes to complete. You will complete a task in which you will be asked to <b>indicate whether you see an animal and human, OR two humans</b>.
+  <p class="block-text">Please click Start when you are ready to begin. </p>
+  <button type="button" onclick="this.blur(); practice.instructions()">Start</button>
+  <p class="block-text" id="legal">By answering the following
+    questions, you are participating in a study being 
+    performed by cognitive scientists in the Stanford Department of
+    Psychology. If you have questions about this research, please 
+    contact us at <a href="mailto://languagecoglab@gmail.com.">languagecoglab@gmail.com</a>.
+                
+    You must be at least 18 years old to participate. Your 
+    participation in this research is voluntary. You may decline to 
+    answer any or all of the following questions. You may decline 
+    further participation, at any time, without adverse 
+    consequences. Your anonymity is assured; the researchers who 
+    have requested your participation will not receive any personal 
+    information about you.
+    <br><br>
+</div>
+    
+<div class="slide" id="practiceInstructions">
+  <br><br><p class="block-text">
+    <b>Hit "A" if you see an animal and human, 
+  <br><br>
+    and hit "H" if you see two humans.
+    </b>
+  </p>
+  <p class="block-text">Aim to be fast and accurate.
+    Click 'start' to begin viewing the images.</p>
+  <p class="block-text"><button type="button" onclick="this.blur(); practice.pass()">Start</button></p>
+</div>
+    
+<div class="slide" id="stage">
+  <p align="center">
+  <table border="0">
+    <tr height=360px>
+      <td>
+	<center>
+	<table border="0">
+	  <tr>
+	    <td width=300px>
+	      <p id="leftPic"></p>
+	    </td>
+	    <td width=300px>
+	      <p id="rightPic"></p>
+	    </td>
+	  </tr>
+    </table>
+    <table border="0">
+    <tr>
+      <td>
+      <p id="instructionsText"></p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+      <p id="instructionsText2"></p>
+      </td>
+    </tr>
+	</table>
+	</center>
+      </td>
+    </tr>
+  </table>
+  </p>
+</div>
+    
+<div class="slide" id="stage_ready">
+  <p align="center">
+  <table border="0">
+    <tr height=360px>
+      <td>
+	<center>
+	<table border="0">
+	  <tr>
+	    <td width=300px>
+	      <p id="centerPic"></p>
+	    </td>
+	  </tr>
+	</table>
+	</center>
+      </td>
+    </tr>
+  </table>
+  </p>
+</div>
+    
+    
+<div class="slide" id="realTrialsInstructions">
+  <br><br><p class="block-text">You are now finished with the practice round. Click Start to begin
+  the experiment.
+    <br><br>
+    Remember,
+    <br><br>
+    <b>Hit "A" if you see an animal and human, 
+  <br><br>
+    and hit "H" if you see two humans.
+    </b>
+  </p>
+  <button type="button" onclick="this.blur(); experiment.pass()">Start</button></p>
+</div>
+    
+<div class="slide" id="finished">
+  You're finished - thanks for participating! Submitting to Mechanical Turk...
+</div>
+<script src="zt12rp1.js"></script>
+
+</body>
+</html>
