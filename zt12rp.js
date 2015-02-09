@@ -1,8 +1,5 @@
 // Zitek & Tiedens (2012) Replication Project 
 
-var filename = "EJY_ZTRP0"
-var condCounts = "1,3;2,3" // fixme
-
 // ---------------- HELPER ------------------
 // function: showSlide
 function showSlide(id) {
@@ -41,13 +38,7 @@ Array.prototype.shuffle = function() {
 // ---------------- PARAMETERS ------------------
 
 // CONDITION ASSIGNMENT
-//var cond = random(2)+1; // (1-6)
-//call the maker getter to get the cond variable 
-var xmlHttp = null;
-xmlHttp = new XMLHttpRequest();
-xmlHttp.open( "GET", "https://langcog.stanford.edu/cgi-bin/subject_equalizer/maker_getter.php?conds=" + condCounts +"&filename=" + filename, false );
-xmlHttp.send( null );
-var cond = xmlHttp.responseText;
+var cond = random(2)+1; // (1-6)
 
 // PRE-LOAD IMAGES
 // By creating image object and setting source, images preload
@@ -132,7 +123,7 @@ makeImageArray = function(imageArray) {
         
 showSlide("instructions");
 
-// VAR PRACTICE SETUP - FIXME
+// VAR PRACTICE SETUP
 var practice = {
   trialOrder: allPrTrialNum,
   trialNum: "",
@@ -252,12 +243,7 @@ var experiment = {
   end: function() {
     showSlide("finished"); // fixme!! just for trying
     setTimeout(function () {
-            //Decrement			
-            var xmlHttp = null;
-            xmlHttp = new XMLHttpRequest();
-            xmlHttp.open("GET", "https://langcog.stanford.edu/cgi-bin/subject_equalizer/decrementer.php?filename=" + filename + "&to_decrement=" + cond, false);
-            xmlHttp.send(null);
-            turk.submit(experiment);
+           turk.submit(experiment);
         }, 1500);
   },
   
