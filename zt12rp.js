@@ -105,10 +105,11 @@ allTrialNum = [0,   1,	2,	3,	4], // fixme!
    
 if (cond == 2) {
     allPrTrialFaces = allPrTrialFaces.reverse();
+    prTrialAnswers = prTrialAnswers.reverse();
     allTrialFaces_ap = allTrialFaces_ap.reverse();
     allTrialFaces_dd = allTrialFaces_dd.reverse();
     allTrialFaces_ds = allTrialFaces_ds.reverse();
-    allTrialFaces_ss = allTrialFaces_ss.reverse();
+    allTrialFaces_ss = allTrialFaces_ss.reverse(); 
 };
 
 
@@ -157,7 +158,7 @@ var practice = {
    practice.faceInputRight = imageArray[1];
    var url1 ="faces/"+practice.faceInputLeft+".bmp";
    var url2 ="faces/"+practice.faceInputRight+".bmp";
-   return practice.face();
+   return practice.pass();
   },
   
   face: function() {
@@ -205,7 +206,7 @@ var practice = {
     
         practice.data.push(data)
         $("#number").html("");
-        setTimeout(practice.pass, 100)
+        setTimeout(practice.next, 100)
       }
     };
     $(document).one("keydown", keyPressHandler);
@@ -214,16 +215,8 @@ var practice = {
   pass: function() {
     var url ="faces/pass.png";
     showSlide("stage_ready");
-    $("#centerPic").html('<img src="'+url+'">');
-    var keyPressHandler = function(event) {
-      var keyCode = event.which;      
-      if (keyCode != 32) {
-        $(document).one("keydown", keyPressHandler);        
-      } else {
-        setTimeout(practice.next, 500);    
-      }
-   };
-    $(document).one("keydown", keyPressHandler);
+    $("#centerPic").html('Get ready,');
+    setTimeout(practice.face, 500);  
   },     
 }
 
@@ -280,7 +273,7 @@ var experiment = {
    experiment.faceInputRight = imageArray[1];
    var url1 ="faces/"+experiment.faceInputLeft+".bmp";
    var url2 ="faces/"+experiment.faceInputRight+".bmp";
-   return experiment.face();
+   return experiment.pass();
   },
   
   face: function() {
@@ -325,7 +318,7 @@ var experiment = {
     
         experiment.data.push(data)
         $("#number").html("");
-        setTimeout(experiment.pass, 100);    
+        setTimeout(experiment.next, 100);    
       }
     };
     $(document).one("keydown", keyPressHandler);
@@ -334,16 +327,8 @@ var experiment = {
   pass: function() {
     var url ="faces/pass.png";
     showSlide("stage_ready");
-    $("#centerPic").html('<img src="'+url+'">');
-    var keyPressHandler = function(event) {
-      var keyCode = event.which;      
-      if (keyCode != 32) {
-        $(document).one("keydown", keyPressHandler);        
-      } else {
-        setTimeout(experiment.next, 500);    
-      }
-   };
-    $(document).one("keydown", keyPressHandler);
+    $("#centerPic").html('Get ready,');
+    setTimeout(experiment.face, 500);
   },     
 
 }
