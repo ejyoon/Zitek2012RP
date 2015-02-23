@@ -1,0 +1,49 @@
+{"data": [
+{
+slide: "test",
+cond: "ss",
+leftPic: "ss20b",
+rightPic: "ss20a",
+trialNum: 1,
+key: "h",
+correct: 1,
+rt: 606
+},{
+slide: "test",
+cond: "dd",
+leftPic: "ss19b",
+rightPic: "ss19a",
+trialNum: 2,
+key: "h",
+correct: 1,
+rt: 600
+},{
+slide: "test",
+cond: "ss",
+leftPic: "dd20b",
+rightPic: "dd20a",
+trialNum: 3,
+key: "h",
+correct: 1,
+rt: 497
+},{
+slide: "test",
+cond: "ss",
+leftPic: "ss18b",
+rightPic: "ss18a",
+trialNum: 4,
+key: "h",
+correct: 1,
+rt: 501
+},{
+slide: "test",
+cond: "ds",
+leftPic: "ss17b",
+rightPic: "ss17a",
+trialNum: 5,
+key: "h",
+correct: 1,
+rt: 603
+}
+]
+}
