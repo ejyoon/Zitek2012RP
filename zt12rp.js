@@ -1,4 +1,6 @@
 // Zitek & Tiedens (2012) Replication Project 
+var filename = "EJY_ztrp1"
+var condCounts = "1,2;2,2" //Example: "1,20;2,20;3,20"
 
 // ---------------- HELPER ------------------
 // function: showSlide
@@ -38,7 +40,14 @@ Array.prototype.shuffle = function() {
 // ---------------- PARAMETERS ------------------
 
 // CONDITION ASSIGNMENT
-var cond = random(2)+1; // (1-6)
+// var cond = random(2)+1; // (1-6)
+
+//call the maker getter to get the cond variable 
+var xmlHttp = null;
+xmlHttp = new XMLHttpRequest();
+xmlHttp.open( "GET", "https://langcog.stanford.edu/cgi-bin/subject_equalizer/maker_getter.php?conds=" + condCounts +"&filename=" + filename, false );
+xmlHttp.send( null );
+var cond = xmlHttp.responseText;
 
 // PRE-LOAD IMAGES
 // By creating image object and setting source, images preload
@@ -97,9 +106,7 @@ allTrialFaces_ssNum = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19],
 allTrialOrder_cond = ["ap",	"ap",	"ap",	"ap",	"ap",	"ap",	"ap",	"ap",	"ap",	"ap",	"ap",	"ap",	"ap",	"ap",	"ap",	"ap",	"ap",	"ap",	"ap",	"ap",	"ap",	"ap",	"ap",	"ap",	"ap",	"ap",	"ap",	"ap",	"ap",	"ap",	"ap",	"ap", "dd",	"dd",	"dd",	"dd",	"dd",	"dd",	"dd",	"dd",	"dd",	"dd",	"dd",	"dd",	"dd",	"dd",	"dd",	"dd",	"dd",	"dd",	"dd",	"dd", "ds",	"ds",	"ds",	"ds",	"ds",	"ds",	"ds",	"ds",	"ds",	"ds",	"ds",	"ds",	"ds",	"ds",	"ds",	"ds",	"ds",	"ds",	"ds",	"ds", "ss",	"ss",	"ss",	"ss",	"ss",	"ss",	"ss",	"ss",	"ss",	"ss",	"ss",	"ss",	"ss",	"ss",	"ss",	"ss",	"ss",	"ss",	"ss",	"ss"],
 
 allTrialAnswers = ["a",	"a",	"a",	"a",	"a",	"a",	"a",	"a",	"a",	"a",	"a",	"a",	"a",	"a",	"a",	"a",	"a",	"a",	"a",	"a",	"a",	"a",	"a",	"a",	"a",	"a",	"a",	"a",	"a",	"a",	"a",	"a",    "h",	"h",	"h",	"h",	"h",	"h",	"h",	"h",	"h",	"h",	"h",	"h",	"h",	"h",	"h",	"h",	"h",	"h",	"h",	"h",	"h",	"h",	"h",	"h",	"h",	"h",	"h",	"h",	"h",	"h",	"h",	"h",	"h",	"h",	"h",	"h",	"h",	"h",	"h",	"h",	"h",	"h",	"h",	"h",	"h",	"h",	"h",	"h",	"h",	"h",	"h",	"h",	"h",	"h",	"h",	"h",	"h",	"h",	"h",	"h"]
-allTrialNum = [0,   1,	2,	3,	4], // fixme!
-               
-               // 5,	6,	7,	8,	9,	10,	11,	12,	13,	14,	15,	16,	17,	18,	19,	20,	21,	22,	23,	24,	25,	26,	27,	28,	29,	30,	31,	32,	33,	34,	35,	36,	37,	38,	39,	40,	41,	42,	43,	44,	45,	46,	47,	48,	49,	50,	51,	52,	53,	54,	55,	56,	57,	58,	59,	60,	61,	62,	63,	64,	65,	66,	67,	68,	69,	70,	71,	72,	73,	74,	75,	76,	77,	78,	79,	80,	81,	82,	83,	84,	85,	86,	87,	88,	89,	90,	91],
+allTrialNum = [0,  1,	2,	3,	4,	5,	6,	7,	8,	9,	10,	11,	12,	13,	14,	15,	16,	17,	18,	19,	20,	21,	22,	23,	24,	25,	26,	27,	28,	29,	30,	31,	32,	33,	34,	35,	36,	37,	38,	39,	40,	41,	42,	43,	44,	45,	46,	47,	48,	49,	50,	51,	52,	53,	54,	55,	56,	57,	58,	59,	60,	61,	62,	63,	64,	65,	66,	67,	68,	69,	70,	71,	72,	73,	74,	75,	76,	77,	78,	79,	80,	81,	82,	83,	84,	85,	86,	87,	88,	89,	90,	91],
 
  myAllTrialOrder = allTrialOrder_cond.shuffle();
    
@@ -236,6 +243,12 @@ var experiment = {
   end: function() {
     showSlide("finished"); // fixme!! just for trying
     setTimeout(function () {
+        //Decrement			
+            var xmlHttp = null;
+            xmlHttp = new XMLHttpRequest();
+            xmlHttp.open("GET", "https://langcog.stanford.edu/cgi-bin/subject_equalizer/decrementer.php?filename=" + filename + "&to_decrement=" + cond, false);
+            xmlHttp.send(null);
+        
            turk.submit(experiment);
         }, 1500);
   },
