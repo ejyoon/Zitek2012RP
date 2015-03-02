@@ -5,7 +5,7 @@ var condCounts = "1,50;2,50" //Example: "1,20;2,20;3,20"
 // ---------------- HELPER ------------------
 // function: showSlide
 function showSlide(id) {
-  $(".slide").hide();
+  $(".slide").hide();   
   $("#"+id).show();
 }
 
@@ -133,8 +133,23 @@ makeImageArray = function(imageArray) {
 };        
         
 // ----- EXPERIMENT -----
-        
+
+
+// declare the set of images we'd like to load
+var images = ["pr1a",	"pr1b",	"pr2a",	"pr2b",	"pr3a",	"pr3b",	"pr4a",	"pr4b",	"pr5a",	"pr5b", "ds1a",	"ds1b",	"ds2a",	"ds2b",	"ds3a",	"ds3b",	"ds4a",	"ds4b",	"ds5a",	"ds5b",	"ds6a",	"ds6b",	"ds7a",	"ds7b",	"ds8a",	"ds8b",	"ds9a",	"ds9b",	"ds10a",	"ds10b",	"ds11a",	"ds11b",	"ds12a",	"ds12b",	"ds13a",	"ds13b",	"ds14a",	"ds14b",	"ds15a",	"ds15b",	"ds16a",	"ds16b",	"ds17a",	"ds17b",	"ds18a",	"ds18b",	"ds19a",	"ds19b",	"ds20a",	"ds20b", "dd1a",	"dd1b",	"dd2a",	"dd2b",	"dd3a",	"dd3b",	"dd4a",	"dd4b",	"dd5a",	"dd5b",	"dd6a",	"dd6b",	"dd7a",	"dd7b",	"dd8a",	"dd8b",	"dd9a",	"dd9b",	"dd10a",	"dd10b",	"dd11a",	"dd11b",	"dd12a",	"dd12b",	"dd13a",	"dd13b",	"dd14a",	"dd14b",	"dd15a",	"dd15b",	"dd16a",	"dd16b",	"dd17a",	"dd17b",	"dd18a",	"dd18b",	"dd19a",	"dd19b",	"dd20a",	"dd20b", "ap1a",	"ap1b",	"ap2a",	"ap2b",	"ap3a",	"ap3b",	"ap4a",	"ap4b",	"ap5a",	"ap5b",	"ap6a",	"ap6b",	"ap7a",	"ap7b",	"ap8a",	"ap8b",	"ap9a",	"ap9b",	"ap10a",	"ap10b",	"ap11a",	"ap11b",	"ap12a",	"ap12b",	"ap13a",	"ap13b",	"ap14a",	"ap14b",	"ap15a",	"ap15b",	"ap16a",	"ap16b",	"ap17a",	"ap17b",	"ap18a",	"ap18b",	"ap19a",	"ap19b",	"ap20a",	"ap20b",	"ap21a",	"ap21b",	"ap22a",	"ap22b",	"ap23a",	"ap23b",	"ap24a",	"ap24b",	"ap25a",	"ap25b",	"ap26a",	"ap26b",	"ap27a",	"ap27b",	"ap28a",	"ap28b",	"ap29a",	"ap29b",	"ap30a",	"ap30b",	"ap31a",	"ap31b",	"ap32a",	"ap32b", "ss1a",	"ss1b",	"ss2a",	"ss2b",	"ss3a",	"ss3b",	"ss4a",	"ss4b",	"ss5a",	"ss5b",	"ss6a",	"ss6b",	"ss7a",	"ss7b",	"ss8a",	"ss8b",	"ss9a",	"ss9b",	"ss10a",	"ss10b",	"ss11a",	"ss11b",	"ss12a",	"ss12b",	"ss13a",	"ss13b",	"ss14a",	"ss14b",	"ss15a",	"ss15b",	"ss16a",	"ss16b",	"ss17a",	"ss17b",	"ss18a",	"ss18b",	"ss19a",	"ss19b",	"ss20a",	"ss20b"]
+
+var images_full = new Array()
+for (i=0; i<194; i++) {
+    images_full[i] = new Image()
+    images_full[i].src =  "faces/" + images[i] + ".bmp"
+}
+
+// show instructions slide to start
 showSlide("instructions");
+
+// starting at trial 0
+n_trials = 97; 
+n_trials_completed = 0;
 
 // VAR PRACTICE SETUP
 var practice = {
@@ -154,6 +169,7 @@ var practice = {
   },
     
   next: function() {
+   $('.bar').css('width', ( (n_trials_completed / n_trials)*100 + "%"));
    var n = practice.trialOrder.shift();
    practice.trialNum = n+1;
    practice.trialTarget = prTrialAnswers[n];
@@ -218,6 +234,7 @@ var practice = {
     
         practice.data.push(data)
         $("#number").html("");
+        n_trials_completed++;
         setTimeout(practice.next, 100)
       }
     };
@@ -227,7 +244,7 @@ var practice = {
   pass: function() {
     var url ="faces/pass.png";
     showSlide("stage_ready");
-    $("#centerPic").html('Get ready,');
+    $("#centerPic").html('<p style="text-align:center;">Get ready...</p>');
     setTimeout(practice.face, 500);  
   },     
 }
@@ -263,6 +280,7 @@ var experiment = {
   },
     
   next: function() {
+    $('.bar').css('width', ( (n_trials_completed / n_trials)*100 + "%"));
    var n = experiment.trialOrder.shift();
    experiment.trialNum = n+1;
    experiment.trialCond = myAllTrialOrder[n];
@@ -295,6 +313,7 @@ var experiment = {
   },
   
   face: function() {
+   $('.bar').css('width', ( (n_trials_completed / n_trials)*100 + "%"));
    var n = experiment.trialNum;
    var trialCond = myAllTrialOrder[n-1];
    var url1 ="faces/"+experiment.faceInputLeft+".bmp";
@@ -336,6 +355,7 @@ var experiment = {
     
         experiment.data.push(data)
         $("#number").html("");
+        n_trials_completed++;
         setTimeout(experiment.next, 100);    
       }
     };
@@ -345,7 +365,7 @@ var experiment = {
   pass: function() {
     var url ="faces/pass.png";
     showSlide("stage_ready");
-    $("#centerPic").html('Get ready,');
+    $("#centerPic").html('<p style="text-align:center;">Get ready...</p>');
     setTimeout(experiment.face, 500);
   },     
 
