@@ -1,0 +1,48 @@
+{
+    "ApprovalTime": "2015-03-16T09:11:45Z",
+    "AutoApprovalTime": "2015-03-16T09:06:51Z",
+    "AssignmentId": "3B4YI393V9WG82EBB59GK3KQZYZSSS",
+    "WorkerId": "A2AMI7BVALOCJP",
+    "AcceptTime": "2015-03-16T08:32:54Z",
+    "HITId": "35YHTYFL1G3K95SZ9E9KZ7QWFG0FV2",
+    "Assignment": "",
+    "answer": [
+        {
+            "rt": 2260,
+            "slide": "practice",
+            "trialNum": 1,
+            "correct": 1,
+            "key": "a"
+        },
+        {
+            "rt": 705,
+            "slide": "practice",
+            "trialNum": 2,
+            "correct": 1,
+            "key": "a"
+        },
+        {
+            "rt": 720,
+            "slide": "practice",
+            "trialNum": 3,
+            "correct": 1,
+            "key": "h"
+        },
+        {
+            "rt": 438,
+            "slide": "practice",
+            "trialNum": 4,
+            "correct": 1,
+            "key": "h"
+        },
+        {
+            "rt": 444,
+            "slide": "practice",
+            "trialNum": 5,
+            "correct": 1,
+            "key": "h"
+        }
+    ],
+    "AssignmentStatus": "Approved",
+    "SubmitTime": "2015-03-16T08:36:51Z"
+}

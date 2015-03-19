@@ -1,0 +1,22 @@
+rm(list = ls())#
+library(jsonlite)#
+source("/Users/ericang/Documents/Courses/Psych254/zt12rp/useful.R")#
+#
+raw.data.path <- "/Users/ericang/Documents/Courses/Psych254/zt12rp/production-results/"#
+processed.data.path <- "/Users/ericang/Documents/Courses/Psych254/zt12rp/processed_data/"#
+#
+## LOOP TO READ IN FILES#
+all.data <- data.frame()#
+files <- dir(raw.data.path,pattern="*.json")#
+#
+for (file.name in files) {#
+  print(file.name)#
+  ## these are the two functions that are most meaningful#
+  json_file <- readLines(paste(raw.data.path,file.name,sep=""))#
+  json_file_str = paste(json_file, collapse = "")#
+  json_file_str = gsub(",}", "}", json_file_str)#
+  jso = jsonlite::fromJSON(json_file_str)#
+  jso1 <- data.frame(jso)#
+  ## now here's where data get bound together#
+  jso <- rbind(all.data, jso1)#
+}

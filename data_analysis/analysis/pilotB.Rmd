@@ -1,0 +1,108 @@
+---
+title: "psych254-yoon-RP-pilotB"
+author: "Erica Yoon"
+date: "March 2, 2015"
+output: html_document
+---
+
+```{r}
+source("../helper/useful.R")
+
+# read in data
+d <- read.csv("../processed_data/pilotB.csv")
+```
+
+
+
+```{r}
+#filter rt (within 2 stdev of log of the mean)
+d <- d %>%
+  mutate(include_good_rt = ifelse(log(rt) > mean(log(rt)) + 2 * sd(log(rt)) |
+                                    log(rt) < mean(log(rt)) - 2 * sd(log(rt)),
+                                  0,1))
+d_final <- filter(d,  include_good_rt == 1)
+
+# inverse rt
+d_final <- d_final %>%
+  mutate(inv_rt = 1/rt)
+
+# histogram: rt
+qplot(rt, data = d_final, geom = "histogram") # across all cond
+qplot(rt, data = d_final, geom = "histogram", facets = ~cond) # dividing by cond
+qplot(rt, data = subset(d_final, correct == 1), geom = "histogram", facets = ~cond) # dividing by cond, just correct
+
+# histogram: inverse rt
+qplot(inv_rt, data = d_final, geom = "histogram")
+qplot(inv_rt, data = d_final, geom = "histogram", facets = ~cond)
+qplot(inv_rt, data = subset(d_final, correct == 1), geom = "histogram", facets = ~cond)
+
+
+# plot of the means
+ms <- d_final %>% 
+  filter(correct == 1) %>%
+  filter(cond != "ap") %>%
+  group_by(cond) %>%
+  summarise(rt = mean(rt), na.rm = TRUE) %>%
+  droplevels()
+
+mss <- d_final %>% 
+  filter(correct == 1) %>%
+  filter(cond != "ap") %>%
+  group_by(cond, subid) %>%
+  summarise(rt = mean(rt), na.rm = TRUE)
+
+ms$cih <- aggregate(rt ~ cond, mss, ci.high)$rt
+ms$cil <- aggregate(rt ~ cond, mss, ci.low)$rt
+
+
+ms$cond <- as.factor(ms$cond)
+levels(ms$cond) <- c("dominant-dominant", "dominant-submissive", "submissive-submissive")
+
+
+p1 <- ggplot(data = ms,
+             aes(x=cond, y=rt, fill=cond)) +
+  geom_bar(stat="identity", position=position_dodge()) +
+  geom_errorbar(aes(ymin=rt-cil, ymax=rt+cih),
+                width=.2,
+                position=position_dodge(.9)) +
+  #  coord_cartesian(ylim=c(.9,6)) +
+#  scale_y_continuous(breaks=1:6) +
+  xlab("Condition") + 
+  ylab("Reaction time") +
+  ggtitle("Reaction times for identification")
+p1
+
+
+## inverse reaction time
+ms <- d_final %>% 
+  filter(correct == 1) %>%
+  filter(cond != "ap") %>%
+  group_by(cond) %>%
+  summarise(inv_rt = mean(inv_rt), na.rm = TRUE) %>%
+  droplevels()
+
+mss <- d_final %>% 
+  filter(correct == 1) %>%
+  filter(cond != "ap") %>%
+  group_by(cond, subid) %>%
+  summarise(inv_rt = mean(inv_rt), na.rm = TRUE)
+
+ms$cih <- aggregate(inv_rt ~ cond, mss, ci.high)$inv_rt
+ms$cil <- aggregate(inv_rt ~ cond, mss, ci.low)$inv_rt
+
+
+ms$cond <- as.factor(ms$cond)
+levels(ms$cond) <- c("dominant-dominant", "dominant-submissive", "submissive-submissive")
+
+p1 <- ggplot(data = ms,
+             aes(x=cond, y=inv_rt, fill=cond)) +
+  geom_bar(stat="identity", position=position_dodge()) +
+  geom_errorbar(aes(ymin=inv_rt-cil, ymax=inv_rt+cih),
+                width=.2,
+                position=position_dodge(.9)) +
+  #  coord_cartesian(ylim=c(.9,6)) +
+  #  scale_y_continuous(breaks=1:6) +
+  xlab("Condition") + 
+  ylab("Reaction time") +
+  ggtitle("Inverse reaction times for identification")
+p1

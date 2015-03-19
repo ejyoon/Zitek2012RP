@@ -1,8 +1,8 @@
 {
     "title":               "What do you see?",
-    "description":         "A simple task of categorizing two pictures as either two humans, or a human and an animal",
+    "description":         "A simple 4-minute task of categorizing two pictures as either two humans, or a human and an animal",
     "keywords":            "Categorization, game, fun, short, pictures, faces",
-    "url":                 "http://stanford.edu/~ejyoon/psych254/zt12rp.html",
+    "url":                 "https://web.stanford.edu/~ejyoon/psych254/zt12rp.html",
     "frame_height":         450,
     "assignment_duration":  "1 hour",
     "auto_approval_delay":  "30 minutes",

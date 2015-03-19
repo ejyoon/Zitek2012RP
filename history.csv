@@ -1,0 +1,22 @@
+Time,Action,Data
+2015/03/01 18:51:27,Create,"{u'description': u'A simple task of categorizing two pictures as either two humans, or a human and an animal', u'title': u'What do you see?', u'url': u'https://stanford.edu/~ejyoon/psych254/zt12rp.html', u'assignment_duration': u'1 hour', u'qualifications': {u'location': u'US', u'approval_percentage': 85}, u'frame_height': 450, u'keywords': u'Categorization, game, fun, short, pictures, faces', u'auto_approval_delay': u'30 minutes', u'reward': 0.6}"
+2015/03/01 18:57:48,Expire,
+2015/03/01 18:58:00,Expire,
+2015/03/01 19:05:50,Create,"{u'description': u'A simple task of categorizing two pictures as either two humans, or a human and an animal', u'title': u'What do you see?', u'url': u'https://web.stanford.edu/~ejyoon/psych254/zt12rp.html', u'assignment_duration': u'1 hour', u'qualifications': {u'location': u'US', u'approval_percentage': 85}, u'frame_height': 450, u'keywords': u'Categorization, game, fun, short, pictures, faces', u'auto_approval_delay': u'30 minutes', u'reward': 0.6}"
+2015/03/02 07:04:00,Create,"{u'description': u'A simple task of categorizing two pictures as either two humans, or a human and an animal', u'title': u'What do you see?', u'url': u'https://web.stanford.edu/~ejyoon/psych254/zt12rp.html', u'assignment_duration': u'1 hour', u'qualifications': {u'location': u'US', u'approval_percentage': 85}, u'frame_height': 450, u'keywords': u'Categorization, game, fun, short, pictures, faces', u'auto_approval_delay': u'30 minutes', u'reward': 0.6}"
+2015/03/05 22:53:39,Add,5 days
+2015/03/05 23:03:02,Add,1 week
+2015/03/05 23:03:45,Add,4 assignments
+2015/03/06 00:46:17,Add,10 assignments
+2015/03/06 00:55:20,Add,40 assignments
+2015/03/06 08:01:55,Add,40 assignments
+2015/03/09 12:12:34,Add,2 assignments
+2015/03/09 12:12:42,Add,2 assignments
+2015/03/16 01:30:04,Create,"{u'description': u'A simple 4-minute task of categorizing two pictures as either two humans, or a human and an animal', u'title': u'What do you see?', u'url': u'https://web.stanford.edu/~ejyoon/psych254/zt12rp.html', u'assignment_duration': u'1 hour', u'qualifications': {u'location': u'US', u'approval_percentage': 85}, u'frame_height': 450, u'keywords': u'Categorization, game, fun, short, pictures, faces', u'auto_approval_delay': u'30 minutes', u'reward': 0.6}"
+2015/03/16 01:31:02,Create,"{u'description': u'A simple 4-minute task of categorizing two pictures as either two humans, or a human and an animal', u'title': u'What do you see?', u'url': u'https://web.stanford.edu/~ejyoon/psych254/zt12rp.html', u'assignment_duration': u'1 hour', u'qualifications': {u'location': u'US', u'approval_percentage': 85}, u'frame_height': 450, u'keywords': u'Categorization, game, fun, short, pictures, faces', u'auto_approval_delay': u'30 minutes', u'reward': 0.6}"
+2015/03/16 01:32:00,Add,5 days
+2015/03/16 03:09:03,Add,50 assignments
+2015/03/16 10:52:42,Add,99 assignments
+2015/03/16 16:02:49,Expire,
+2015/03/18 18:30:00,Add,1 day
+2015/03/18 18:30:12,Add,3 assignments
