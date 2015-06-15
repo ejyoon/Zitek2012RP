@@ -9,8 +9,8 @@ output: html_document
 rm(list = ls())
 library(jsonlite)
 library(ggplot2)
-source("../helper/useful.R")
-raw.data.path <- "../raw_data/"
+source("/Users/ericang/Documents/Courses/Psych254/zt12rp/data_analysis/helper/useful.R")
+raw.data.path <- "/Users/ericang/Documents/Courses/Psych254/zt12rp/data_analysis/raw_data/"
 ```
 
 ## Process and bind raw data files
@@ -47,23 +47,21 @@ jso_sub <- all.data %>%
 
 mean = mean(jso_sub$count)
 sd = sd(jso_sub$count)
-filter(jso_sub, count > mean + 3*sd)
-
-# need to filter: pilot_B4.json, ztrp87.json
+jso_sub <- filter(jso_sub, count > mean + 3*sd)
+jso_sub$subid
 ```
 
 ## 2. exclude participants who have average reaction times that are 4 SDs higher than the mean of the remaining participants
 
 ```{r}
-jso_sub <- all.data %>% 
+jso_sub2 <- all.data %>% 
   group_by(subid) %>% 
   summarise(mean_rt = mean(rt)) 
 
-mean = mean(jso_sub$mean_rt)
-sd = sd(jso_sub$mean_rt)
-filter(jso_sub, mean_rt > mean + 4*sd)
-
-# need to filter: none
+mean = mean(jso_sub2$mean_rt)
+sd = sd(jso_sub2$mean_rt)
+jso_sub2 <- filter(jso_sub2, mean_rt > mean + 4*sd)
+jso_sub2$subid
 ```
 
 ## 3. Exclude each participant’s incorrect responses
@@ -71,8 +69,10 @@ filter(jso_sub, mean_rt > mean + 4*sd)
 ## 4. Exclude responses that took response time that is greater than 3 SDs above the overall mean response time
 
 ```{r}
-jso_final <- all.data %>%
-  filter(subid != "pilot_B4.json" & subid != "ztrp87.json") %>%
+jso_final <- all.data[!all.data$subid %in% jso_sub$subid,]
+jso_final <- jso_final[!jso_final$subid %in% jso_sub2$subid,]
+
+jso_final <- jso_final %>%
   filter(correct == 1) %>%
   filter(rt < mean + 3*sd) %>%
   mutate(inv_rt = 1/rt)
@@ -125,17 +125,15 @@ levels(rp$expt) <- c("Original", "Replication")
 levels(rp$cond) <- c("both dominant","dominant-submissive", "both submissive") 
 
 p1 <- ggplot(data = rp,
-             aes(x=cond, y=rt, fill=cond)) +
-  geom_bar(stat="identity", position=position_dodge()) +
-  geom_errorbar(aes(ymin=rt-cil, ymax=rt+cih),
-                width=.2,
-                position=position_dodge(.9)) +
-  facet_grid(.~expt) +
-  #  coord_cartesian(ylim=c(.9,6)) +
-  #  scale_y_continuous(breaks=1:6) +
-  xlab("Condition") + 
-  ylab("Reaction time") +
-  ggtitle("Reaction times for identification")
+             aes(x=cond, y=rt, fill=expt, colour=expt)) +
+    geom_dotplot(binaxis = "y", stackdir = "center") +
+    geom_errorbar(aes(ymin=rt-cil, ymax=rt+cih),
+                  width=.2) +
+    guides(colour=FALSE) +
+    guides(fill=guide_legend("Experiment")) +
+    xlab("Condition") + 
+    ylab("Reaction time (ms)") +
+    ggtitle("Reaction times for identification")
 p1
 ```
 
@@ -210,7 +208,7 @@ jso_mss <- jso_final %>%
   
 jso_mss$cond <- as.factor(jso_mss$cond)
 jso_mss$cond <- relevel(jso_mss$cond, "ds")
-lmer <- lmer(inv_rt ~ cond + (1 | subid) + (1 | item), data = jso_mss)
+lmer <- lmer(inv_rt ~ cond + (cond | subid) + (1 | item), data = jso_mss)
 summary(lmer)
 ```
 
